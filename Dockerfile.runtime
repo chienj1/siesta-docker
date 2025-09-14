@@ -1,0 +1,23 @@
+# Siesta 5.4.0 Dockerfile for running the built executable with minimal libraries
+
+
+
+FROM debian:stable-slim
+
+# 安裝執行需要的最小函式庫（不含編譯器）
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libblas-dev \
+    liblapack-dev \
+    libhdf5-dev \
+    libnetcdf-dev \
+    libreadline-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# 從單階段 build 出來的 image 複製執行檔
+# 假設那個 image 叫 siesta-build:latest
+COPY --from=siesta-build:latest /usr/local/siesta /usr/local/siesta
+
+ENV PATH="/usr/local/siesta/bin:${PATH}"
+
+WORKDIR /work
+CMD ["siesta", "--version"]
