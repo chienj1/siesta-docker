@@ -1,6 +1,19 @@
 # siesta-docker
-Dockerfile for single-core build-from-source siesta. Plus, minimal version just for run.
 
-how to build the image: \
-docker build -t siesta-build -f Dockerfile.build . \
+This repository provides Dockerfiles for building and running **[Siesta](https://siesta-project.org/siesta/)** — a program for performing *Density Functional Theory (DFT)* calculations.
+
+It includes:
+
+- **Build image**: Compiles Siesta from source (single-core version)  
+- **Runtime image**: A minimal environment for running Siesta executables
+
+## Build Instructions
+
+To build the Docker images, run the following commands:
+
+```bash
+# Build the image that compiles Siesta from source
+docker build -t siesta-build -f Dockerfile.build .
+
+# Build the minimal runtime image
 docker build -t siesta-runtime -f Dockerfile.runtime .
