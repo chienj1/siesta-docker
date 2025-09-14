@@ -17,3 +17,10 @@ docker build -t siesta-build -f Dockerfile.build .
 
 # Build the minimal runtime image
 docker build -t siesta-runtime -f Dockerfile.runtime .
+```
+
+To run the program with input:
+```bash
+docker run --rm -it --init -v "$(pwd):/work" -w /work siesta-runtime siesta foo.fdf > foo.out
+```
+
