@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     liblapack-dev \
     libhdf5-dev \
     libnetcdf-dev \
+    libnetcdff-dev \
     libreadline-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -21,3 +22,4 @@ ENV PATH="/usr/local/siesta/bin:${PATH}"
 
 WORKDIR /work
 CMD ["siesta", "--version"]
+
