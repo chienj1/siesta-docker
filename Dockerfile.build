@@ -38,10 +38,8 @@ WORKDIR /opt/siesta
 RUN cmake -S. -B_build \
       -DCMAKE_INSTALL_PREFIX=/usr/local/siesta \
       -DCMAKE_BUILD_TYPE=Release \
-      -DENABLE_MPI=OFF \
-      -DENABLE_SCALAPACK=OFF \
-      -DENABLE_NETCDF=ON \
-      -DENABLE_HDF5=ON \
+      -DSIESTA_WITH_MPI=OFF \
+      -DSIESTA_WITH_NETCDF=ON
  && cmake --build _build -j1 \
  && cmake --install _build
 
