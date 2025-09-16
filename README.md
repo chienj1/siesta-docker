@@ -8,7 +8,7 @@ It includes:
 - **Runtime image**: A minimal environment for running Siesta executables
 
 Serial version \
-NetCDF enabled \
+NetCDF enabled 
 
 ## Build Instructions
 
