@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     liblapack-dev \
     libhdf5-dev \
     libnetcdf-dev \
+    libnetcdff-dev \
     libreadline-dev \
     patch \
     diffutils \
@@ -39,7 +40,8 @@ RUN cmake -S. -B_build \
       -DCMAKE_INSTALL_PREFIX=/usr/local/siesta \
       -DCMAKE_BUILD_TYPE=Release \
       -DSIESTA_WITH_MPI=OFF \
-      -DSIESTA_WITH_NETCDF=ON
+      -DSIESTA_WITH_SCALAPACK=OFF \
+      -DSIESTA_WITH_NETCDF=ON \
  && cmake --build _build -j1 \
  && cmake --install _build
 
