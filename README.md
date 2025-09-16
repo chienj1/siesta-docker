@@ -7,6 +7,9 @@ It includes:
 - **Build image**: Compiles Siesta from source (single-core version)  
 - **Runtime image**: A minimal environment for running Siesta executables
 
+Serial version \
+NetCDF enabled \
+
 ## Build Instructions
 
 To build the Docker images, run the following commands:
