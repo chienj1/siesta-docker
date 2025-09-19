@@ -1,0 +1,25 @@
+# A sisl (https://docs.siesta-project.org/projects/siesta/en/latest/tutorials/scripting/sisl/) contained python env based on pixi (https://pixi.sh/latest/)
+
+# ---------- 建置階段 ----------
+FROM ghcr.io/prefix-dev/pixi:latest AS build
+
+WORKDIR /app
+
+# 初始化 pixi 專案並安裝套件（使用 conda-forge channel）
+RUN pixi init && \
+    pixi add python=3.11 sisl matplotlib && \
+    pixi install
+
+# ---------- 最終映像檔 ----------
+FROM ubuntu:24.04 AS production
+
+# 複製 pixi 環境
+COPY --from=build /app/.pixi /app/.pixi
+
+# 直接將 pixi 環境的 bin 加入 PATH
+ENV PATH=/app/.pixi/envs/default/bin:$PATH
+
+WORKDIR /app
+
+# 預設執行測試 sisl 是否可用
+CMD ["python", "-c", "import sisl; print(sisl.__version__)"]
